@@ -6,13 +6,13 @@ import wci.intermediate.*;
 import wci.backend.*;
 import wci.message.*;
 
-import static wci.frontend.pascal.PascalTokenType.STRING;
+import static wci.frontend.java.JavaTokenType.STRING;
 import static wci.message.MessageType.*;
 
 /**
- * <h1>Pascal</h1>
+ * <h1>Java</h1>
  *
- * <p>Compile or interpret a Pascal source program.</p>
+ * <p>Compile or interpret a Java source program.</p>
  *
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
@@ -26,7 +26,7 @@ public class Java
     private Backend backend;  // backend
 
     /**
-     * Compile or interpret a Pascal source program.
+     * Compile or interpret a Java source program.
      * @param operation either "compile" or "execute".
      * @param filePath the source file path.
      * @param flags the command line flags.
@@ -40,7 +40,7 @@ public class Java
             source = new Source(new BufferedReader(new FileReader(filePath)));
             source.addMessageListener(new SourceMessageListener());
 
-            parser = FrontendFactory.createParser("Pascal", "top-down", source);
+            parser = FrontendFactory.createParser("Java", "top-down", source);
             parser.addMessageListener(new ParserMessageListener());
 
             backend = BackendFactory.createBackend(operation);
@@ -62,7 +62,7 @@ public class Java
 
     private static final String FLAGS = "[-ix]";
     private static final String USAGE =
-        "Usage: Pascal execute|compile " + FLAGS + " <source file path>";
+        "Usage: Java execute|compile " + FLAGS + " <source file path>";
 
     /**
      * The main method.
@@ -91,7 +91,7 @@ public class Java
             // Source path.
             if (i < args.length) {
                 String path = args[i];
-                new Pascal(operation, path, flags);
+                new Java(operation, path, flags);
             }
             else {
                 throw new Exception();

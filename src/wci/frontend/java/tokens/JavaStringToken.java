@@ -5,8 +5,8 @@ import wci.frontend.java.*;
 
 import static wci.frontend.Source.EOL;
 import static wci.frontend.Source.EOF;
-import static wci.frontend.pascal.PascalTokenType.*;
-import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.java.JavaTokenType.*;
+import static wci.frontend.java.JavaErrorCode.*;
 
 /**
  * <h1>PascalStringToken</h1>

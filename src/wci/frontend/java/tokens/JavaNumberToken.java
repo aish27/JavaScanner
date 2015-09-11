@@ -1,10 +1,10 @@
 package wci.frontend.java.tokens;
 
 import wci.frontend.*;
-import wci.frontend.pascal.*;
+import wci.frontend.java.*;
 
-import static wci.frontend.pascal.PascalTokenType.*;
-import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.java.JavaTokenType.*;
+import static wci.frontend.java.JavaErrorCode.*;
 
 /**
  * <h1>PascalNumberToken</h1>
@@ -14,7 +14,7 @@ import static wci.frontend.pascal.PascalErrorCode.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class JavaNumberToken extends PascalToken
+public class JavaNumberToken extends JavaToken
 {
     private static final int MAX_EXPONENT = 37;
 

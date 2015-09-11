@@ -1,11 +1,11 @@
 package wci.frontend.java;
 
 import wci.frontend.*;
-import wci.frontend.pascal.tokens.*;
+import wci.frontend.java.tokens.*;
 
 import static wci.frontend.Source.EOF;
-import static wci.frontend.pascal.PascalTokenType.*;
-import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.java.JavaTokenType.*;
+import static wci.frontend.java.JavaErrorCode.*;
 
 /**
  * <h1>PascalScanner</h1>
@@ -44,21 +44,21 @@ public class JavaScanner extends Scanner
         if (currentChar == EOF) {
             token = new EofToken(source);
         }
-        else if (Character.isLetter(currentChar)) {
-            token = new PascalWordToken(source);
+        else if (Character.isLetter(currentChar) || currentChar=='_') {
+            token = new JavaWordToken(source);
         }
         else if (Character.isDigit(currentChar)) {
-            token = new PascalNumberToken(source);
+            token = new JavaNumberToken(source);
         }
         else if (currentChar == '\'') {
-            token = new PascalStringToken(source);
+            token = new JavaStringToken(source);
         }
         else if (JavaTokenType.SPECIAL_SYMBOLS
                  .containsKey(Character.toString(currentChar))) {
-            token = new PascalSpecialSymbolToken(source);
+            token = new JavaSpecialSymbolToken(source);
         }
         else {
-            token = new PascalErrorToken(source, INVALID_CHARACTER,
+            token = new JavaErrorToken(source, INVALID_CHARACTER,
                                          Character.toString(currentChar));
             nextChar();  // consume character
         }

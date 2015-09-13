@@ -4,6 +4,7 @@ import wci.frontend.*;
 import wci.frontend.java.tokens.*;
 
 import static wci.frontend.Source.EOF;
+import static wci.frontend.Source.EOL;
 import static wci.frontend.java.JavaTokenType.*;
 import static wci.frontend.java.JavaErrorCode.*;
 
@@ -62,8 +63,43 @@ public class JavaScanner extends Scanner
                                          Character.toString(currentChar));
             nextChar();  // consume character
         }
+        if (token.getText().equals("/*") ||token.getText().equals("//")){
+            skipComments(token.getText());
+            return extractToken();
+        }
 
         return token;
+    }
+    /**
+     * Skip Comments.  A comment starts with // or /*.
+     * @throws Exception if an error occurred.
+     */
+    private void skipComments(String commentType) throws Exception
+    {
+       // Start of a comment? need to fix
+       char currentChar = currentChar();
+       if (commentType.equals("/*")) {
+            do {
+                    currentChar = nextChar();  // consume comment characters
+            } while ((currentChar != '*') && (currentChar != EOF));
+
+            // Found closing '}'?
+            if (nextChar() == '/') {
+                currentChar = nextChar();  // consume the '}'
+            }else{
+                skipComments("/*");// no nested comments
+            }
+        }
+        else if (commentType.equals("//")) {
+            do {
+                    currentChar = nextChar();  // consume comment characters
+            } while ((currentChar != EOL) && (currentChar != EOF));
+
+            // Found closing '}'?
+            if (currentChar == EOL) {
+                currentChar = nextChar();  // consume the 'end of line'
+            }
+        }
     }
 
     /**
@@ -75,24 +111,10 @@ public class JavaScanner extends Scanner
     {
         char currentChar = currentChar();
 
-        while (Character.isWhitespace(currentChar) || (currentChar == '{')) {
-
-            // Start of a comment?
-            if (currentChar == '{') {
-                do {
-                    currentChar = nextChar();  // consume comment characters
-                } while ((currentChar != '}') && (currentChar != EOF));
-
-                // Found closing '}'?
-                if (currentChar == '}') {
-                    currentChar = nextChar();  // consume the '}'
-                }
-            }
-
-            // Not a comment.
-            else {
-                currentChar = nextChar();  // consume whitespace character
-            }
+        while (Character.isWhitespace(currentChar)) {
+    
+           currentChar = nextChar();  // consume whitespace character
+            
         }
     }
 }

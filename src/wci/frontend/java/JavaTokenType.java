@@ -27,7 +27,7 @@ public enum JavaTokenType implements TokenType
     
     // Special symbols.
     PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), TILDE("~"),VERTICAL_BAR("|"),
-    DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"), DOUBLE_QUOTES("\""),
+    DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"), APOSTROPHE("'"), DOUBLE_QUOTES("\""),
     EQUALS("="), BOOLEAN_EQUALS("=="), NOT_EQUALS("!="), LESS_THAN("<"), LESS_EQUALS("<="),
     GREATER_EQUALS(">="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"),MULTIPLY_ASSIGN("*="),DIVIDE_ASSIGN("/="),
     LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),PLUS_EQUAL("+="),MINUS_EQUAL("-="),
@@ -35,7 +35,7 @@ public enum JavaTokenType implements TokenType
     SHIFT_RIGHT(">>"), SHIFT_LEFT("<<"), RSHIFT_ASSIGN(">>="), LSHIFT_ASSIGN("<<="),DOUBLE_VERTICAL("||"),
     START_COMMENT("/*"), END_COMMENT("*/"),AT_SIGN("@"),MODULUS("%"),MOD_ASSIGN("%="),
     BIT_ASSIGN("&="),BITWISE_AND("&"),CIRCUMFLEX_ACCENT("^"),QUESTION("?"),BITOR_ASSIGN("^="),
-     DOT_DOT(".."), 
+     
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
@@ -43,7 +43,7 @@ public enum JavaTokenType implements TokenType
     private static final int LAST_RESERVED_INDEX = WHILE.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
-    private static final int LAST_SPECIAL_INDEX = DOT_DOT.ordinal();
+    private static final int LAST_SPECIAL_INDEX = BITOR_ASSIGN.ordinal();
 
     private String text;  // token text
 

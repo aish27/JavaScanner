@@ -42,7 +42,7 @@ public class JavaSpecialSymbolToken extends JavaToken
         switch (currentChar) {
 
             // Single-character special symbols.
-            case '@': case ',': case '"':
+            case '@': case ',': case '"': case '.': case ':':
             case ';':  case '\'': case '(':  case ')': case '?':
             case '[':  case ']':  case '{':  case '}': case '~':
             {
@@ -102,17 +102,7 @@ public class JavaSpecialSymbolToken extends JavaToken
                 }
                 break;
             }
-            // : or :=
-            case ':': {
-                currentChar = nextChar();  // consume ':';
-
-                if (currentChar == '=') {
-                    text += currentChar;
-                    nextChar();  // consume '='
-                }
-
-                break;
-            }
+           
             // + or ++
             case '+':{
                 currentChar = nextChar();// consume '+'
@@ -215,18 +205,6 @@ public class JavaSpecialSymbolToken extends JavaToken
                         nextChar();  // consume '='
                     }
                 }
-                break;
-            }
-
-            // . or ..
-            case '.': {
-                currentChar = nextChar();  // consume '.';
-
-                if (currentChar == '.') {
-                    text += currentChar;
-                    nextChar();  // consume '.'
-                }
-
                 break;
             }
 

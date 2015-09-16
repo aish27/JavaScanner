@@ -41,7 +41,7 @@ public class JavaCharToken extends JavaToken
 
         char currentChar = nextChar();  // consume initial quote
         textBuffer.append('\''); //escape character for the first quote
-
+        valueBuffer.append('\'');
         boolean singleQuoteFound = false;
         boolean escapeFound = false;
         // Get character.
@@ -55,20 +55,40 @@ public class JavaCharToken extends JavaToken
 
             if ((currentChar != '\'') && (currentChar != EOF)) //while we are not at the end
             { //if there is a quote and not end of file
-                //System.out.println("CURRENT CHARACTER IS: "+ currentChar);
-               
+
                 if(currentChar == '\\' && peekChar() == '\'')
                 {
+                    textBuffer.append(currentChar);
                     currentChar = nextChar();
-             
                 }
                 else if(currentChar == '\\' && peekChar() == '\\')
                 {
                     currentChar = nextChar();
              
                 }
+                else if(currentChar == '\\' && peekChar() == 'n')
+                {
+                    textBuffer.append(currentChar);
+                    currentChar = nextChar();
+                    valueBuffer = new StringBuilder();
+                    valueBuffer.append("\n");
+                }
+                else if(currentChar == '\\' && peekChar() == 't')
+                {
+                    textBuffer.append(currentChar);
+                    currentChar = nextChar();
+                    valueBuffer = new StringBuilder();
+                    valueBuffer.append("\t");
+                }
                 textBuffer.append(currentChar);
-                valueBuffer.append(currentChar);
+                if(textBuffer.toString().equals("\'\\n" ) || textBuffer.toString().equals("\'\\t" )  )
+                {
+                    
+                }
+                else
+                {
+                    valueBuffer.append(currentChar);
+                }
                 currentChar = nextChar();  // consume character
                 
 
@@ -96,6 +116,15 @@ public class JavaCharToken extends JavaToken
         {
             nextChar();  // consume final quote
             textBuffer.append('\'');
+            if(textBuffer.toString().equals("\'\\n\'") || textBuffer.toString().equals("\'\\t\'"))
+            {
+                valueBuffer.insert(0, "\'");
+                valueBuffer.append("\'");
+            }
+            else
+            {
+                valueBuffer.append('\'');
+            }
             type = CHAR;
             value = valueBuffer.toString();
         }

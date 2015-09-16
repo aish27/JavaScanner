@@ -28,7 +28,7 @@ public class JavaScanner extends Scanner
     }
 
     /**
-     * Extract and return the next Pascal token from the source.
+     * Extract and return the next Java token from the source.
      * @return the next token.
      * @throws Exception if an error occurred.
      */
@@ -51,9 +51,19 @@ public class JavaScanner extends Scanner
         else if (Character.isDigit(currentChar)) {
             token = new JavaNumberToken(source);
         }
-        else if (currentChar == '\'') {
+        else if (currentChar == '\"') 
+        {
+            //System.out.println("Activate String Token");
             token = new JavaStringToken(source);
         }
+        else if(currentChar == '\'')
+        {
+            //System.out.println("Current char is " + currentChar);
+
+            //System.out.println("Activate Char Token");
+            token = new JavaCharToken(source);        
+        }
+        
         else if (JavaTokenType.SPECIAL_SYMBOLS
                  .containsKey(Character.toString(currentChar))) {
             token = new JavaSpecialSymbolToken(source);

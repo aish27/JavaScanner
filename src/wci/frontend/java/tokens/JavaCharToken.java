@@ -47,11 +47,6 @@ public class JavaCharToken extends JavaToken
         // Get character.
         do 
         {
-            //System.out.println("Current char is :" + currentChar);
-            // Replace any whitespace character with a blank.
-            //if (Character.isWhitespace(currentChar)) {
-              //  currentChar = ' ';
-            //}
 
             if ((currentChar != '\'') && (currentChar != EOF)) //while we are not at the end
             { //if there is a quote and not end of file
@@ -63,8 +58,11 @@ public class JavaCharToken extends JavaToken
                 }
                 else if(currentChar == '\\' && peekChar() == '\\')
                 {
+                    //currentChar = nextChar();
+                    textBuffer.append(currentChar);
                     currentChar = nextChar();
-             
+                    //valueBuffer = new StringBuilder();
+                    //valueBuffer.append("\t");
                 }
                 else if(currentChar == '\\' && peekChar() == 'n')
                 {
@@ -80,6 +78,7 @@ public class JavaCharToken extends JavaToken
                     valueBuffer = new StringBuilder();
                     valueBuffer.append("\t");
                 }
+                
                 textBuffer.append(currentChar);
                 if(textBuffer.toString().equals("\'\\n" ) || textBuffer.toString().equals("\'\\t" )  )
                 {
@@ -90,25 +89,9 @@ public class JavaCharToken extends JavaToken
                     valueBuffer.append(currentChar);
                 }
                 currentChar = nextChar();  // consume character
-                
 
             }
 
-           
-            /*
-            if (currentChar == '\'') // if we see escape character
-            {
-                
-                while ((currentChar == '\'') && (peekChar() == '\'')) 
-                {
-                    textBuffer.append("''");
-                    valueBuffer.append(currentChar); // append single-quote
-                    currentChar = nextChar();        // consume pair of quotes
-                    currentChar = nextChar();
-                }
-
-            }
-            */
             //while current character is not a single quote and not end of file
         } while (((currentChar != '\'')&&!singleQuoteFound) && (currentChar != EOF)  ); 
 

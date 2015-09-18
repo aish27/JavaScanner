@@ -48,7 +48,7 @@
 '
 >>> CHAR            line=020, pos=22, text="'\t'"
 >>>                 value='	'
->>> CHAR            line=020, pos=27, text="'\'"
+>>> CHAR            line=020, pos=27, text="'\\'"
 >>>                 value='\'
 021 
 022 // String tokens
@@ -115,7 +115,7 @@
 
                   32 source lines.
                    0 syntax errors.
-                0.01 seconds total parsing time.
+                0.04 seconds total parsing time.
 
                    0 instructions generated.
                 0.00 seconds total code generation time.

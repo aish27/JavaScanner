@@ -1,17 +1,17 @@
 001 /* This is a comment. */
 002 // So is this.
-003 
+003
 004 /* Here's a comment
 005    that spans several
 006    source lines. */
-007 
+007
 008 Two/*comments in*//***a row***/ here.
 >>> IDENTIFIER      line=008, pos= 0, text="Two"
 >>> IDENTIFIER      line=008, pos=32, text="here"
 >>> DOT             line=008, pos=36, text="."
 009 /* This is /* not a nested comment. */
 010 // Nor is /* this */ one.
-011 
+011
 012 { Not a comment. }
 >>> LEFT_BRACE      line=012, pos= 0, text="{"
 >>> IDENTIFIER      line=012, pos= 2, text="Not"
@@ -19,7 +19,7 @@
 >>> IDENTIFIER      line=012, pos= 8, text="comment"
 >>> DOT             line=012, pos=15, text="."
 >>> RIGHT_BRACE     line=012, pos=17, text="}"
-013 
+013
 014 // Word tokens
 015 Hello world
 >>> IDENTIFIER      line=015, pos= 0, text="Hello"
@@ -32,7 +32,7 @@
 017 What?
 >>> IDENTIFIER      line=017, pos= 0, text="What"
 >>> QUESTION        line=017, pos= 4, text="?"
-018 
+018
 019 // Character tokens
 020 'x' 'A' '\'' 'a' '\n' '\t' '\\'
 >>> CHAR            line=020, pos= 0, text="'x'"
@@ -47,19 +47,19 @@
 >>>                 value='
 '
 >>> CHAR            line=020, pos=22, text="'\t'"
->>>                 value='	'
+>>>                 value='     '
 >>> CHAR            line=020, pos=27, text="'\\'"
 >>>                 value='\'
-021 
+021
 022 // String tokens
 023 "Hello, world."
 >>> STRING          line=023, pos= 0, text="'Hello, world.'"
 >>>                 value="Hello, world."
 024 "Hello,\tworld!"
 >>> STRING          line=024, pos= 0, text="'Hello,\tworld!'"
->>>                 value="Hello,	world!"
+>>>                 value="Hello,       world!"
 025 "Hello,\n\"world!\""
->>> STRING          line=025, pos= 0, text="'Hello,\n\"world!\"'"
+>>> STRING          line=025, pos= 0, text="'Hello,\n\"world!\"
 >>>                 value="Hello,
 "world!""
 026 "It's Friday!"
@@ -70,7 +70,7 @@
 >>>                 value=""
 >>> STRING          line=027, pos= 4, text="'"'"
 >>>                 value="""
-028 
+028
 029 // Special symbol tokens
 030 + - * / := . , ; : = <> < <= >= > ( ) [ ] { } } ^ ..
 >>> PLUS            line=030, pos= 0, text="+"
@@ -115,7 +115,7 @@
 
                   32 source lines.
                    0 syntax errors.
-                0.04 seconds total parsing time.
+                0.19 seconds total parsing time.
 
                    0 instructions generated.
                 0.00 seconds total code generation time.
